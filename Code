@@ -1,0 +1,109 @@
+#include <iostream>
+#include<locale.h>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL,"Portuguese");
+     long int cpf,x1,x2,x3,x4,x5,x6,x7,x8,x0,y1,y2,y3,y4,y5,y6,y7,y8,cv1,cv2;//x = O DIGITO SEPARADA, E Y = O NUMERO(cpf) DIMINUIDO PRA PEGAR O PROXIMO DIGITO.
+     cout<<"Criado por: Leonardo Borck."<<endl;
+            cout<<"Digite um cpf sem o Código Verificador(8 ou 9 digitos): ";
+            cin>>cpf;
+       while (cpf>999999999 or cpf<10000000){ //enquanto não digitar um numero entre 8 e 9 digitos ele fica pedindo para digitar o numero certo
+            cout<<endl<<"Digite um cpf válido, de 8 a 9 dígitos: ";
+            cin>>cpf;
+}
+      if (cpf<=99999999 and cpf>=10000000){ //SE DIGITAR UM DE 8 DIGITOS EXECUTA ISSO
+          x8=cpf%10;
+          y8=cpf/10;
+          x7=y8%10;
+          y7=y8/10;
+          x6=y7%10;
+          y6=y7/10;
+          x5=y6%10;
+          y5=y6/10;
+          x4=y5%10;
+          y4=y5/10;
+          x3=y4%10;
+          y3=y4/10;
+          x2=y3%10;
+          y2=y3/10;
+          x1=y2%10;
+          //ENTÃO 2 É SEMPRE O MENOR PESO x1*9+x2*8+x3*7+x4*6+x5*5+x6*4+x7*3+x8*2
+          //cv1=primeiro codigo verificador
+          cv1=(x1*9)+(x2*8)+(x3*7)+(x4*6)+(x5*5)+(x6*4)+(x7*3)+(x8*2);
+          cv1=cv1%11;
+          //se o cv1 for maior q 2 executa o codigo abaixo se não executa else
+          if (cv1>=2){
+          cv1=11-cv1;
+          cv2=(x1*10)+(x2*9)+(x3*8)+(x4*7)+(x5*6)+(x6*5)+(x7*4)+(x8*3)+(cv1*2);
+          cv2=cv2%11;
+          //se cv2 é maior ou igual a 2 executa o if senao executa o else
+          if(cv2>=2){
+              cv2=11-cv2;
+}
+            else{
+              cv2=0;
+}
+          cout<<"Seu cpf com o dígito verificador é: 0"<<x1<<x2<<"."<<x3<<x4<<x5<<"."<<x6<<x7<<x8<<"-"<<cv1<<cv2<<endl;
+}
+        else { //SE CV1 <2
+          cv1=0;
+          cv2=(x1*10)+(x2*9)+(x3*8)+(x4*7)+(x5*6)+(x6*5)+(x7*4)+(x8*3)+(cv1*2);
+          cv2=cv2%11;
+          if(cv2>=2){ //se cv2 é maior q 2 executa o if se nao executa o else
+              cv2=11-cv2;
+}
+            else{
+              cv2=0;
+}
+          cout<<"Seu cpf com o dígito verificador é: 0"<<x1<<x2<<"."<<x3<<x4<<x5<<"."<<x6<<x7<<x8<<"-"<<cv1<<cv2<<endl;
+}
+}
+        else if(cpf<=999999999 and cpf>=100000000){//LIMITA A UM NUMERO DE 9 DIGITOS //separação dos digitos
+          x8=cpf%10;
+          y8=cpf/10;
+          x7=y8%10;
+          y7=y8/10;
+          x6=y7%10;
+          y6=y7/10;
+          x5=y6%10;
+          y5=y6/10;
+          x4=y5%10;
+          y4=y5/10;
+          x3=y4%10;
+          y3=y4/10;
+          x2=y3%10;
+          y2=y3/10;
+          x1=y2%10;
+          y1=y2/10;
+          x0=y1%10;
+          cv1=(x0*10)+(x1*9)+(x2*8)+(x3*7)+(x4*6)+(x5*5)+(x6*4)+(x7*3)+(x8*2);//média ponderada
+          cv1=cv1%11;
+            if (cv1>=2){
+            cv1=11-cv1;
+            cv2=(x0*11)+(x1*10)+(x2*9)+(x3*8)+(x4*7)+(x5*6)+(x6*5)+(x7*4)+(x8*3)+(cv1*2);
+            cv2=cv2%11;//resto %
+            if(cv2>=2){
+              cv2=11-cv2;
+}
+            else{
+              cv2=0;
+}
+            cout<<"Seu cpf com o dígito verificador é: "<<x0<<x1<<x2<<"."<<x3<<x4<<x5<<"."<<x6<<x7<<x8<<"-"<<cv1<<cv2<<endl;
+}
+            else {
+            cv1=0;
+            cv2=(x0*11)+(x1*10)+(x2*9)+(x3*8)+(x4*7)+(x5*6)+(x6*5)+(x7*4)+(x8*3)+(cv1*2);
+            cv2=cv2%11;
+            if(cv2>=2){
+              cv2=11-cv2;
+}
+            else{
+              cv2=0;
+}
+            cout<<"Seu cpf com o dígito verificador é: "<<x0<<x1<<x2<<"."<<x3<<x4<<x5<<"."<<x6<<x7<<x8<<"-"<<cv1<<cv2<<endl;
+}
+}
+return 0;
+}
